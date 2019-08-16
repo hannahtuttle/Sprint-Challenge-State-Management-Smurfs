@@ -3,7 +3,7 @@ import "./App.css";
 
 import {connect} from 'react-redux'
 
-import {getData} from '../actions'
+import {getData, deleteData} from '../actions'
 import FormWithFormik from './form.js'
 
 import Smurf from './smurfCards.js'
@@ -20,7 +20,7 @@ const App = props => {
         <FormWithFormik />
         <p onClick={props.getData}>Check out our smurfs here</p>
         {props.smurfs.map(person => 
-          <Smurf key={person.id} person={person}/>
+          <Smurf key={person.id} person={person} deleteButton={props.deleteData}/>
           )}
       </div>
     );
@@ -36,5 +36,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps, {
-    getData
+    getData, deleteData
   })(App);
