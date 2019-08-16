@@ -3,8 +3,8 @@ import "./App.css";
 
 import {connect} from 'react-redux'
 
-import {getData, deleteData} from '../actions'
-import FormWithFormik from './form.js'
+import {getData, deleteData, sendData} from '../actions'
+import SmurfForm from './form.js'
 
 import Smurf from './smurfCards.js'
 
@@ -17,7 +17,7 @@ const App = props => {
         <div>Welcome to your state management version of Smurfs!</div>
         <div>Start inside of your `src/index.js` file!</div>
         <div>Have fun!</div>
-        <FormWithFormik />
+        <SmurfForm sendData={props.sendData}/>
         <p onClick={props.getData}>Check out our smurfs here</p>
         {props.smurfs.map(person => 
           <Smurf key={person.id} person={person} deleteButton={props.deleteData}/>
@@ -30,11 +30,11 @@ const App = props => {
 const mapStateToProps = state => {
   return{
     test: state.test,
-    smurfs: state.smurfs
+    smurfs: state.smurfs,
   }
 }
 
 export default connect(
   mapStateToProps, {
-    getData, deleteData
+    getData, deleteData, sendData
   })(App);
