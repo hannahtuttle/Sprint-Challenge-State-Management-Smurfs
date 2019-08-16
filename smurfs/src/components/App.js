@@ -6,6 +6,8 @@ import {connect} from 'react-redux'
 import {getData} from '../actions'
 import FormWithFormik from './form.js'
 
+import Smurf from './smurfCards.js'
+
 const App = props => {
  
  
@@ -17,7 +19,9 @@ const App = props => {
         <div>Have fun!</div>
         <FormWithFormik />
         <p onClick={props.getData}>Check out our smurfs here</p>
-
+        {props.smurfs.map(person => 
+          <Smurf key={person.id} person={person}/>
+          )}
       </div>
     );
  
