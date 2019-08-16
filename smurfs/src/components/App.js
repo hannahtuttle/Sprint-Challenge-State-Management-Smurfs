@@ -3,6 +3,9 @@ import "./App.css";
 
 import {connect} from 'react-redux'
 
+import {getData} from '../actions'
+import FormWithFormik from './form.js'
+
 const App = props => {
  
  
@@ -12,7 +15,9 @@ const App = props => {
         <div>Welcome to your state management version of Smurfs!</div>
         <div>Start inside of your `src/index.js` file!</div>
         <div>Have fun!</div>
-        <p>{props.test}</p>
+        <FormWithFormik />
+        <p onClick={props.getData}>Check out our smurfs here</p>
+
       </div>
     );
  
@@ -21,10 +26,11 @@ const App = props => {
 const mapStateToProps = state => {
   return{
     test: state.test,
+    smurfs: state.smurfs
   }
 }
 
 export default connect(
   mapStateToProps, {
-
+    getData
   })(App);
